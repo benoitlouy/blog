@@ -2,6 +2,8 @@ name: "Test"
 on:
   pull_request:
   push:
+    branches:
+      - main
 jobs:
   tests:
     runs-on: ubuntu-latest
@@ -12,3 +14,5 @@ jobs:
         github_access_token: ${{ secrets.GITHUB_TOKEN }}
     - run: nix develop -c zola build
     - run: find public -type f
+    - run: mv public blog
+    - run: tar czf blog.tar.gz blog
