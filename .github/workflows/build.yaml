@@ -16,3 +16,8 @@ jobs:
     - run: find public -type f
     - run: mv public blog
     - run: tar czf blog.tar.gz blog
+    - uses: actions/upload-artifact@v4
+      with:
+        name: site
+        path: |
+          blog.tar.gz
