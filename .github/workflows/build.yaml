@@ -27,6 +27,6 @@ jobs:
       if: startsWith(github.ref, 'refs/tags/')
       with:
         files: |
-          public
+          public/**
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
