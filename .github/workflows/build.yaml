@@ -14,10 +14,8 @@ jobs:
         github_access_token: ${{ secrets.GITHUB_TOKEN }}
     - run: nix develop -c zola build
     - run: find public -type f
-    - run: mv public blog
-    - run: tar czf blog.tar.gz blog
     - uses: actions/upload-artifact@v4
       with:
-        name: site
+        name: blog.zip
         path: |
-          blog.tar.gz
+          public
