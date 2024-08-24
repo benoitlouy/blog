@@ -22,11 +22,16 @@ jobs:
         name: blog
         path: |
           public
+    - if: startsWith(github.ref, 'refs/tags/')
+      run: |
+        pushd public
+        tar czf ../blog.tar.gz *
+        popd
     - name: Release
       uses: softprops/action-gh-release@v2
       if: startsWith(github.ref, 'refs/tags/')
       with:
         files: |
-          public/**
+          blog.tar.gz
       env:
         GITHUB_TOKEN: ${{ secrets.RELEASE_TOKEN }}
